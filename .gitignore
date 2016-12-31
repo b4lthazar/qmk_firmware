@@ -69,3 +69,8 @@ util/Win_Check_Output.txt
 secrets.tar
 id_rsa_*
 /.vs
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
