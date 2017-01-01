@@ -1,8 +1,14 @@
-# The OSX Friendly Version of the Default Firmware
+To build and load:
 
-So, I took the default firmware and just made a couple of tweaks that make it easier to use with OS X:
+1. Plug only the left keyboard in and reset it.
 
-1. The Cmd key is now on the right side, making Cmd+Space easier.
-2. The media keys work on OSX (But not on Windows).
+```
+cd keyboards/ergodox
+make infinity-b4lthazar-dfu-util
+```
 
-![default osx](default_osx_highres.png)
+2. Plug only the right keyboard in and reset it.
+```
+make infinity-b4lthazar-dfu-util MASTER=right
+```
+

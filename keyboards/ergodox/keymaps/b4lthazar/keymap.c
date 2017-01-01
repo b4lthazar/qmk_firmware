@@ -240,7 +240,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // |      |      |      |
   // `--------------------'
 
-  OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO,
+  OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, RESET,
   OOOOOOOO, KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN,  KC_RPRN,  OOOOOOOO,
             KC_F6,    KC_UNDS,  KC_PLUS,  KC_LCBR,  KC_RCBR,  KC_PIPE,
   OOOOOOOO, KC_F12,   KC_TILD,  OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO,
@@ -257,11 +257,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ,--------------------------------------------------.
   // |        |      |      |      |      |      |      |
   // |--------+------+------+------+------+-------------|
-  // |  Tab   | ____ | ____ | PSCR1| PSCR2| ____ |      |
+  // |  Tab   | L-clk|MousUp| R-clk| PSCR1| PSCR2|      |
   // |--------+------+------+------+------+------|      |
-  // |        | ____ | ____ | ____ | ____ | ____ |------|
+  // |        |MousLt|MousDn|MousRt| ____ | ____ |------|
   // |--------+------+------+------+------+------|      |
-  // |        | ____ | ____ | ____ | ____ | RESET|      |
+  // |        | ____ |Mous3 |Mous4 | ____ | RESET|      |
   // `--------+------+------+------+------+-------------'
   //   |      |      | g(0) | g(1) |      |
   //   `----------------------------------'
@@ -274,9 +274,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                                 `--------------------'
 
   OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO,
-  KC_TAB,   ________, ________, PSCR1,    PSCR2,    ________, OOOOOOOO,
-  OOOOOOOO, ________, ________, ________, ________, ________,
-  OOOOOOOO, ________, ________, ________, ________, RESET,    OOOOOOOO,
+  KC_TAB,   KC_BTN1 , KC_MS_U,  KC_BTN2,  PSCR1,    PSCR2,    OOOOOOOO,
+  OOOOOOOO, KC_MS_L,  KC_MS_D,  KC_MS_R,  ________, ________,
+  OOOOOOOO, ________, KC_BTN3,  KC_BTN4,  ________, RESET,    OOOOOOOO,
   OOOOOOOO, OOOOOOOO, GO_TO_DL, GO_TO_LW, OOOOOOOO,
 
                                                     OOOOOOOO, OOOOOOOO,
@@ -450,5 +450,24 @@ void matrix_init_user(void) {
 
 // Runs constantly in the background, in a loop.
 void matrix_scan_user(void) {
+
+    uint8_t layer = biton32(layer_state);
+
+    ergodox_board_led_off();
+    ergodox_right_led_1_off();
+    ergodox_right_led_2_off();
+    ergodox_right_led_3_off();
+    switch (layer) {
+      // TODO: Make this relevant to the ErgoDox EZ.
+        case 1:
+            ergodox_right_led_1_on();
+            break;
+        case 2:
+            ergodox_right_led_2_on();
+            break;
+        default:
+            // none
+            break;
+    }
 
 };

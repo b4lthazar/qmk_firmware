@@ -3,7 +3,10 @@
 #include "../../config.h"
 
 #undef  TAPPING_TERM
-#define TAPPING_TERM 100
+#define TAPPING_TERM 200
+
+#undef TAPPING_TOGGLE
+#define TAPPING_TOGGLE 2
 
 #undef IGNORE_MOD_TAP_INTERRUPT
 
