@@ -37,12 +37,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * row: 0  1  2  3  4
 * pin:
 */
-#define MATRIX_ROW_PINS { B0, D3, D5, D4, D6 }
+#define MATRIX_ROW_PINS { F1, F5, F7, B5, D7 }
 /* Column pin configuration
  * col: 0  1  2  3
  * pin: F4 E6 B1 D2
  */
-#define MATRIX_COL_PINS { F4, E6, B1, D2 }
+#define MATRIX_COL_PINS { D2, D0, B3, B1 }
 #define UNUSED_PINS
 
 /* COL2ROW or ROW2COL */
@@ -69,12 +69,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Underlight configuration
  */
-#define RGB_DI_PIN F6
-#define RGBLIGHT_ANIMATIONS
-#define RGBLED_NUM 4     // Number of LEDs
-#define RGBLIGHT_HUE_STEP 10
-#define RGBLIGHT_SAT_STEP 17
-#define RGBLIGHT_VAL_STEP 17
+ #define ws2812_PORTREG PORTF
+ #define ws2812_DDRREG DDRF
+ #define ws2812_pin 6
+ #define RGBLED_NUM 4     // Number of LEDs
+ #define RGBLIGHT_HUE_STEP 10
+ #define RGBLIGHT_SAT_STEP 17
+ #define RGBLIGHT_VAL_STEP 17
 
 /*
  * Feature disable options
