@@ -40,6 +40,7 @@
 #define FAT_ARR  M(6)             // Inserts () =>
 #define PSCR1    LGUI(LSFT(KC_3)) // Print screen on OSX
 #define PSCR2    LGUI(LSFT(KC_4)) // Print screen on OSX with bounding box
+#define CMD_GRV  LGUI(KC_GRV)     // CMD+`
 
 // These have to be functions for some reason
 #define MO_TG_LW F(_LW)
@@ -274,7 +275,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                                 `--------------------'
 
   OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO,
-  KC_TAB,   KC_BTN1 , KC_MS_U,  KC_BTN2,  PSCR1,    PSCR2,    OOOOOOOO,
+  CMD_GRV,  KC_BTN1 , KC_MS_U,  KC_BTN2,  PSCR1,    PSCR2,    OOOOOOOO,
   OOOOOOOO, KC_MS_L,  KC_MS_D,  KC_MS_R,  ________, ________,
   OOOOOOOO, ________, KC_BTN3,  KC_BTN4,  ________, RESET,    OOOOOOOO,
   OOOOOOOO, OOOOOOOO, GO_TO_DL, GO_TO_LW, OOOOOOOO,
