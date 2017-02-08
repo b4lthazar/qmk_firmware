@@ -17,12 +17,12 @@
 #undef MOUSEKEY_TIME_TO_MAX
 #undef MOUSEKEY_WHEEL_MAX_SPEED
 #undef MOUSEKEY_WHEEL_TIME_TO_MAX
-#define MOUSEKEY_MOVE_DELTA           5
-#define MOUSEKEY_WHEEL_DELTA          1
-#define MOUSEKEY_DELAY                0
-#define MOUSEKEY_INTERVAL             5
-#define MOUSEKEY_MAX_SPEED            7
-#define MOUSEKEY_TIME_TO_MAX         70
+#define MOUSEKEY_MOVE_DELTA          5
+#define MOUSEKEY_WHEEL_DELTA         1
+#define MOUSEKEY_DELAY               0
+#define MOUSEKEY_INTERVAL            10
+#define MOUSEKEY_MAX_SPEED           8
+#define MOUSEKEY_TIME_TO_MAX         50
 #define MOUSEKEY_WHEEL_MAX_SPEED     16
 #define MOUSEKEY_WHEEL_TIME_TO_MAX   40
 
