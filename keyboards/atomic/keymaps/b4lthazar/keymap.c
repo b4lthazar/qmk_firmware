@@ -1,10 +1,9 @@
 #include "atomic.h"
 
-#include "keymap_common.h"
+// #include "keymap_common.h"
 #include "action_layer.h"
 #include "action.h"
 #include "action_tapping.h"
-
 
 // Layer names
 #define _QW 0 // QWERTY
@@ -23,6 +22,8 @@
 #define KC_LOPT  KC_LALT
 #define KC_ROPT  KC_RALT
 
+#undef TO
+#define TO(layer, when) (layer | QK_TO | (when << 0x4))
 
 //------------------------------------------------------------------------------
 // Keymap defines
