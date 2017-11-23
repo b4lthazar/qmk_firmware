@@ -10,6 +10,7 @@
 #define _LW 1 // LOWERED
 #define _RS 2 // RAISED
 #define _FN 3 // FUNCTION LAYER
+#define _GM 4 // GAMES LAYER (WASD + ARROWS)
 #define _DL _QW // DEFAULT LAYER
 
 #define _RSHT_ESC 4
@@ -54,7 +55,7 @@
 #define GO_TO_LW TO(_LW, ON_RELEASE) // Go to lower layer
 #define GO_TO_RS TO(_RS, ON_RELEASE) // Go to raise layer
 #define GO_TO_FN TO(_FN, ON_RELEASE) // Go to fn layer
-
+#define GO_TO_GM TO(_GM, ON_RELEASE) // Go to game layer
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -87,7 +88,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {CMD_GRV,  KC_BTN1 , KC_MS_U,  KC_BTN2,  PSCR1,    PSCR2,    OOOOOOOO, OOOOOOOO, OOOOOOOO, SLEP2,    KC_HOME,  KC_UP,    KC_PGUP,  KC_INS,   OOOOOOOO },
   {OOOOOOOO, KC_MS_L,  KC_MS_D,  KC_MS_R,  ________, ________, OOOOOOOO, OOOOOOOO, OOOOOOOO, SLEP,     KC_LEFT,  KC_DOWN,  KC_RGHT,  ________, BL_MAC   },
   {OOOOOOOO, ________, KC_BTN3,  KC_BTN4,  ________, RESET,    OOOOOOOO, OOOOOOOO, OOOOOOOO, ________, KC_END,   ________, KC_PGDN,  KC_DEL,   OOOOOOOO },
-  {OOOOOOOO, OOOOOOOO, GO_TO_DL, GO_TO_LW, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, GO_TO_RS, OOOOOOOO, OOOOOOOO, GO_TO_DL }
+  {OOOOOOOO, OOOOOOOO, GO_TO_DL, GO_TO_LW, OOOOOOOO, OOOOOOOO, OOOOOOOO, GO_TO_GM, OOOOOOOO, OOOOOOOO, OOOOOOOO, GO_TO_RS, OOOOOOOO, OOOOOOOO, GO_TO_DL }
+},
+
+[_GM] = {
+  {________, ________, ________, ________, ________, ________, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO },
+  {KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     OOOOOOOO, OOOOOOOO, OOOOOOOO, ________, KC_HOME,  KC_UP,    KC_PGUP,  KC_INS,   OOOOOOOO },
+  {KC_BSPC,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     OOOOOOOO, OOOOOOOO, OOOOOOOO, ________, KC_LEFT,  KC_DOWN,  KC_RGHT,  ________, ________ },
+  {SHFT_ESC, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     OOOOOOOO, OOOOOOOO, OOOOOOOO, ________, KC_END,   ________, KC_PGDN,  KC_DEL,   OOOOOOOO },
+  {OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, GO_TO_DL, OOOOOOOO, OOOOOOOO, OOOOOOOO, GO_TO_RS, OOOOOOOO, OOOOOOOO, GO_TO_DL }
 }
 
 };
