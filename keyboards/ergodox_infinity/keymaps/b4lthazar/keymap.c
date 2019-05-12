@@ -8,6 +8,7 @@
 #define _LW 1 // LOWERED
 #define _RS 2 // RAISED
 #define _FN 3 // FUNCTION LAYER
+#define _GM 4 // GAMES LAYER (WASD + ARROWS)
 #define _DL _QW // DEFAULT LAYER
 
 #define _RSHT_ESC 4
@@ -48,10 +49,10 @@
 // Go to various layers
 // Using ON_PRESS actually does a temporary switch, perhaps this could be used later?
 #define GO_TO_DL TO(_DL, ON_RELEASE) // Go to default layer
-#define GO_TO_QW TO(_QW, ON_RELEASE) // Go to qwerty layer
 #define GO_TO_LW TO(_LW, ON_RELEASE) // Go to lower layer
 #define GO_TO_RS TO(_RS, ON_RELEASE) // Go to raise layer
 #define GO_TO_FN TO(_FN, ON_RELEASE) // Go to fn layer
+#define GO_TO_GM TO(_GM, ON_RELEASE) // Go to game layer
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -281,6 +282,71 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     OOOOOOOO, OOOOOOOO,
                                                               OOOOOOOO,
                                           OOOOOOOO, OOOOOOOO, OOOOOOOO,
+
+  //----------------------------------------------------------------------------
+
+  // Right hand
+  //   ,--------------------------------------------------.
+  //   |      |      |      |      |      |      |        |
+  //   |------+------+------+------+------+------+--------|
+  //   |      | Slep2| Home |  Up  | PgUp | Ins  |        |
+  //   |      |------+------+------+------+------+--------|
+  //   |------| Slep | Left | Down | Right| ____ | Backlt |
+  //   |      |------+------+------+------+------+--------|
+  //   |      | ____ | End  | ____ | PgDn | Del  |        |
+  //   `-------------+------+------+------+------+--------'
+  //                 |      | g(2) |      |      | g(0) |
+  //                 `----------------------------------'
+  // ,-------------.
+  // |      |      |
+  // |------|------|------.
+  // |      |      |      |
+  // |------|      |      |
+  // |      |      |      |
+  // `--------------------'
+
+  OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO,
+  OOOOOOOO, SLEP2,    KC_HOME,  KC_UP,    KC_PGUP,  KC_INS,   OOOOOOOO,
+            SLEP,     KC_LEFT,  KC_DOWN,  KC_RGHT,  ________, BL_MAC,
+  GO_TO_GM, ________, KC_END,   ________, KC_PGDN,  KC_DEL,   OOOOOOOO,
+                      OOOOOOOO, GO_TO_RS, OOOOOOOO, OOOOOOOO, GO_TO_DL,
+
+  OOOOOOOO, OOOOOOOO,
+  OOOOOOOO,
+  OOOOOOOO, OOOOOOOO, OOOOOOOO
+),
+
+[_GM] = LAYOUT_ergodox(
+  // Layer 4: Game (wasd + arrows)
+  // Left Hand
+  // ,--------------------------------------------------.
+  // |  ____  | ____ | ____ | ____ | ____ | ____ | ____ |
+  // |--------+------+------+------+------+-------------|
+  // | Tab    |   Q  |   W  |   E  |   R  |   T  | ____ |
+  // |--------+------+------+------+------+------|      |
+  // | BkSp   |   A  |   S  |   D  |   F  |   G  |------|
+  // |--------+------+------+------+------+------| ____ |
+  // |LSft/esc|   Z  |   X  |   C  |   V  |   B  |      |
+  // `--------+------+------+------+------+-------------'
+  //   | CTRL |  OPT | f(3) | f(1) |  CMD |
+  //   `----------------------------------'
+  //                                        ,-------------.
+  //                                        | ____ | ____ |
+  //                                 ,------|------|------|
+  //                                 |      |      | Home |
+  //                                 | Space| ____ |------|
+  //                                 |      |      | End  |
+  //                                 `--------------------'
+
+  ________, ________, ________, ________, ________, ________, ________,
+  KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     ________,
+  KC_BSPC,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,
+  SHFT_ESC, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     ________,
+  KC_LCTL,  KC_LOPT,  MO_TG_FN, MO_TG_LW, KC_LCMD,
+
+                                                    ________, ________,
+                                                              KC_HOME,
+                                          KC_SPC,   ________, KC_END,
 
   //----------------------------------------------------------------------------
 
