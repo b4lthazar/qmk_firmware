@@ -5,13 +5,14 @@
 
 // Layer names
 #define _QW 0 // QWERTY
-#define _LW 1 // LOWERED
-#define _RS 2 // RAISED
-#define _FN 3 // FUNCTION LAYER
-#define _GM 4 // GAMES LAYER (WASD + ARROWS)
+#define _MC 1 // QWERTY
+#define _LW 2 // LOWERED
+#define _RS 3 // RAISED
+#define _FN 4 // FUNCTION LAYER
+#define _GM 5 // GAMES LAYER (WASD + ARROWS)
 #define _DL _QW // DEFAULT LAYER
 
-#define _RSHT_ESC 4
+#define _RSHT_ESC 6
 
 // Some aliases just for clarity
 #define ________ KC_NO
@@ -49,6 +50,7 @@
 // Go to various layers
 // Using ON_PRESS actually does a temporary switch, perhaps this could be used later?
 #define GO_TO_DL TO(_DL, ON_RELEASE) // Go to default layer
+#define GO_TO_MC TO(_MC, ON_RELEASE) // Go to mac layer
 #define GO_TO_LW TO(_LW, ON_RELEASE) // Go to lower layer
 #define GO_TO_RS TO(_RS, ON_RELEASE) // Go to raise layer
 #define GO_TO_FN TO(_FN, ON_RELEASE) // Go to fn layer
@@ -58,6 +60,70 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_QW] = LAYOUT_ergodox(
   // Layer 0 : Qwerty
+  // Left Hand
+  // ,--------------------------------------------------.
+  // |  ____  | ____ | ____ | ____ | ____ | ____ | ____ |
+  // |--------+------+------+------+------+-------------|
+  // | Tab    |   Q  |   W  |   E  |   R  |   T  | ____ |
+  // |--------+------+------+------+------+------|      |
+  // | BkSp   |   A  |   S  |   D  |   F  |   G  |------|
+  // |--------+------+------+------+------+------| ____ |
+  // |LSft/esc|   Z  |   X  |   C  |   V  |   B  |      |
+  // `--------+------+------+------+------+-------------'
+  //   | CMD |  OPT | f(3) | f(1) |  CTRL |
+  //   `----------------------------------'
+  //                                        ,-------------.
+  //                                        | ____ | ____ |
+  //                                 ,------|------|------|
+  //                                 |      |      | Home |
+  //                                 | Space| ____ |------|
+  //                                 |      |      | End  |
+  //                                 `--------------------'
+
+  ________, ________, ________, ________, ________, ________, ________,
+  KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     ________,
+  KC_BSPC,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,
+  SHFT_ESC, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     ________,
+  KC_LCMD,  KC_LOPT,  MO_TG_FN, MO_TG_LW, KC_LCTL,
+
+                                                    ________, ________,
+                                                              KC_HOME,
+                                          KC_SPC,   ________, KC_END,
+
+  //----------------------------------------------------------------------------
+
+  // Right hand
+  //   ,--------------------------------------------------.
+  //   | ____ | ____ | ____ | ____ | ____ | ____ |  ____  |
+  //   |------+------+------+------+------+------+--------|
+  //   | ____ |   Y  |   U  |   I  |   O  |   P  |   ()   |
+  //   |      |------+------+------+------+------+--------|
+  //   |------|   H  |   J  |   K  |   L  |   ;  |   '    |
+  //   | ____ |------+------+------+------+------+--------|
+  //   |      |   N  |   M  |   ,  |   .  |   /  |RSft/esc|
+  //   `-------------+------+------+------+------+--------'
+  //                 | Ent  | f(2) |  []  |  {}  | ____ |
+  //                 `----------------------------------'
+  // ,-------------.
+  // | ____ | ____ |
+  // |------|------|------.
+  // | PgUp |      |      |
+  // |------| ____ | Space|
+  // | PgDn |      |      |
+  // `--------------------'
+
+  ________, ________, ________, ________,  ________, ________, ________,
+  ________, KC_Y,     KC_U,     KC_I,      KC_O,     KC_P,     PARENS,
+            KC_H,     KC_J,     KC_K,      KC_L,     KC_SCLN,  KC_QUOT,
+  GO_TO_MC, KC_N,     KC_M,     KC_COMM,   KC_DOT,   KC_SLSH,  RSHT_ESC,
+                      KC_ENT,   MO_TG_RS,  BRACKS,   BRACES,   ________,
+  ________, ________,
+  KC_PGUP,
+  KC_PGDN,  ________, KC_SPC
+),
+
+[_MC] = LAYOUT_ergodox(
+  // Layer 1 : Mac
   // Left Hand
   // ,--------------------------------------------------.
   // |  ____  | ____ | ____ | ____ | ____ | ____ | ____ |
@@ -114,7 +180,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ________, KC_Y,     KC_U,     KC_I,      KC_O,     KC_P,     PARENS,
             KC_H,     KC_J,     KC_K,      KC_L,     KC_SCLN,  KC_QUOT,
   ________, KC_N,     KC_M,     KC_COMM,   KC_DOT,   KC_SLSH,  RSHT_ESC,
-                      KC_ENT,   MO_TG_RS,  BRACKS,   BRACES,   ________,
+                      KC_ENT,   MO_TG_RS,  BRACKS,   BRACES,   GO_TO_DL,
   ________, ________,
   KC_PGUP,
   KC_PGDN,  ________, KC_SPC
@@ -342,11 +408,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     ________,
   KC_BSPC,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,
   SHFT_ESC, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     ________,
-  KC_LCTL,  KC_LOPT,  MO_TG_FN, MO_TG_LW, KC_LCMD,
+  OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO, OOOOOOOO,
 
                                                     ________, ________,
-                                                              KC_HOME,
-                                          KC_SPC,   ________, KC_END,
+                                                              OOOOOOOO,
+                                          OOOOOOOO, ________, OOOOOOOO,
 
   //----------------------------------------------------------------------------
 
